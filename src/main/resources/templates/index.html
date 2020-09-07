@@ -5,6 +5,16 @@
     <title>Index Page of Recipe App</title>
 </head>
 <body>
-    <h1 th:text="'Welcome to Recipe App'">Welcome to Recipe App</h1>
+<h1 th:text="'Welcome to Recipe App'">Welcome to Recipe App</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+    </tr>
+    <tr th:each="recipe: ${recipes}">
+        <td th:text="${recipe.id}">ID</td>
+        <td th:text="${recipe.description}">Name</td>
+    </tr>
+</table>
 </body>
 </html>
