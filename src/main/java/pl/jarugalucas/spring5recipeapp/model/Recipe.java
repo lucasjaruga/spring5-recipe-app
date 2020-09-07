@@ -122,6 +122,12 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    public Recipe addIngredient(Ingredient ingredient) {
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
+        return this;
+    }
+
     public Byte[] getImage() {
         return image;
     }
@@ -136,6 +142,7 @@ public class Recipe {
 
     public void setNote(Notes note) {
         this.note = note;
+        note.setRecipe(this);
     }
 
     public Set<Category> getCategories() {
