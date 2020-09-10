@@ -1,9 +1,10 @@
 package pl.jarugalucas.spring5recipeapp.bootstrap;
 
-import org.springframework.boot.CommandLineRunner;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import pl.jarugalucas.spring5recipeapp.model.*;
 import pl.jarugalucas.spring5recipeapp.repositories.CategoryRepository;
 import pl.jarugalucas.spring5recipeapp.repositories.RecipeRepository;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -28,8 +30,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     }
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
         recipeRepository.saveAll(getRecipes());
+        log.debug("I'm in the Bootstrap to load some data");
     }
 
     private List<Recipe> getRecipes() {
